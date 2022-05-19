@@ -11,14 +11,25 @@ import { test } from '@agoric/zoe/tools/prepare-test-env-ava.js';
 // 3. Mint a payment of 20 moolas (this payment holds value)
 // 4. Check if the payment amount is exactly what we asked, use t.deepEqual
 test('issuers, amounts, payments', async (t) => {
-    t.pass('write the test!');
+    const moolaKit = makeIssuerKit('Moola', AssetKind.NAT)
+    const { issuer, brand, mint } = moolaKit
+
+    const moola20 = AmountMath.make(brand, 20n)
+    const moolaPayment20 = mint.getAmountOf((moolaPayment20), moola20)
+
 })
 
 // 1. create an issuer kit, define an amount of 20 moola and mint a payment
 // 2. define a purse for Moola (purse only holds one type of asset) and deposit the payment into the purse
 // 3. try to deposit the payment again and see what happens
 test('payments and purses', async (t) => {
-    t.pass('write the test!');
+    const moolaKit = makeIssuerKit('Moola', AssetKind.NAT)
+    const { issuer, brand, mint } = moolaKit
+
+    const moola20 = AmountMath.make(brand, 20n)
+    const moolaPayment20 = mint.mintPayment(moola20)
+
+    t.true
 })
 
 // 1. create an issuer kit for moolas and use AmountMath to add 20 + 30 moolas
@@ -32,7 +43,8 @@ test('Fungible issuer and AmountMath', async (t) => {
 // 2. how does AmountMath work here? create two NFTs and try to add them together
 // 3. what is the result? create the equivalent amount and test equality using t.deepEqual
 test('Non-fungible issuer and AmountMath', async (t) => {
-    t.pass('write the test!');
+    const cryptoKit = makerIssuerKit('Cryptopunks', AssetKind.SET)
+    const { issuer, brand, mint } = cryptokit
 })
 
 

@@ -17,7 +17,13 @@ import { test } from '@agoric/zoe/tools/prepare-test-env-ava.js';
 
 // check if our installation bundle is what is indeed installed
 test('deploy contract for testing', async (t) => {
-  t.pass('write the test!')
+  const { admin: fakeVatAdmin } = makeFakeVatAdmin()
+  const { zoeService: zoe } = makeZoeKit(fakeVatAdmin)
+  const helloBundle = await bundleSource('./src/contract.js');
+  const helloInstallation = await E(zoe).install(helloBundle)
+
+
+test.is(await E(helloInstallation).getBundle(), helloBundle)
 })
 
 
@@ -26,8 +32,13 @@ test('deploy contract for testing', async (t) => {
 // 3. instantiate the contract using startInstance
 // 4. extract the sayHi function test from the creatorFacet
 // 5. call the function and verify the returned value is 'hi!' using t.is
-test('just say hello', async (t) => {
-  t.pass('write the test!')
+test('just say hello', async (t) => {s
+   const { admin: fakeVatAdmin } = makeFakeVatAdmin()
+   const { zoeService: zoe } = makeZoeKit(fakeVatAdmin)
+   const helloBundle = await bundleSource('./src/contract.js');
+   const helloInstallation = await E(zoe).install(helloBundle)
+
+   const instance = await Element(zoe).startInstance(helloInstallation)
 })
 
 
@@ -38,7 +49,13 @@ test('just say hello', async (t) => {
 // 5. use the invitation by sending an (empty) offer to the contract
 // 6. the contract should reply by saying 'Hello!', use getOfferResult to check this
 test('I invite you to say hello', async (t) => {
-  t.pass('write the test!')
+   const { admin: fakeVatAdmin } = makeFakeVatAdmin()
+   const { zoeService: zoe } = makeZoeKit(fakeVatAdmin)
+   const helloBundle = await bundleSource('./src/contract.js');
+   const helloInstallation = await E(zoe).install(helloBundle)
+
+   const instance = await Element(zoe).startInstance(helloInstallation)
+
 })
 
 
